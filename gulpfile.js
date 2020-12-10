@@ -5,6 +5,7 @@ var cleanCSS = require('gulp-clean-css');
 var sourcemaps = require('gulp-sourcemaps');
 var browserSync = require('browser-sync').create();
 var imagemin = require('gulp-imagemin');
+var ghPages = require('gulp-gh-pages');
 
 
 var runSass = function() {
@@ -50,7 +51,6 @@ var watch = function() {
     gulp.watch('src/fonts/*', fonts)
     gulp.watch('src/img/*', images)
 }
-
 
 function defaultTask(cb) {
   // place code for your default task here
