@@ -5,7 +5,7 @@ var cleanCSS = require('gulp-clean-css');
 var sourcemaps = require('gulp-sourcemaps');
 var browserSync = require('browser-sync').create();
 var imagemin = require('gulp-imagemin');
-
+var ghPages = require('gulp-gh-pages');
 
 var runSass = function() {
   return gulp.src('src/css/app.scss')
@@ -38,7 +38,6 @@ var images = function() {
 }
 
 var watch = function() {
-
     browserSync.init({
         server: {
             baseDir: 'dist'
@@ -50,7 +49,11 @@ var watch = function() {
     gulp.watch('src/fonts/*', fonts)
     gulp.watch('src/img/*', images)
 }
-
+ 
+gulp.task('deploy', function() {
+  return gulp.src('dist')
+    .pipe(ghPages());
+});
 
 function defaultTask(cb) {
   // place code for your default task here
@@ -60,6 +63,7 @@ function defaultTask(cb) {
   images();
   watch();
   cb();
+
 }
 
 
